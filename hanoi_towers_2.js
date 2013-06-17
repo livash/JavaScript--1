@@ -1,6 +1,6 @@
 // Towers of  Hanoi
 
-function towersHanoi(number_of_disks) {
+function TowersHanoi(number_of_disks) {
   this.towers = [[], [], []];
 
   for(var ii = number_of_disks; ii > 0; ii--) {
@@ -8,7 +8,7 @@ function towersHanoi(number_of_disks) {
   }
 }
 
-towersHanoi.prototype.moveDisk = function(from, to) {
+TowersHanoi.prototype.moveDisk = function(from, to) {
   from -= 1;
   to -= 1;
   var lastElement = this.towers[from].length - 1;
@@ -25,19 +25,24 @@ towersHanoi.prototype.moveDisk = function(from, to) {
     //make the move
     this.towers[from].pop();
     this.towers[to].push(fromDisk);
-
+  } else {
+    console.log("this move is not allowed");
   }
-  this.print();
 };
 
-towersHanoi.prototype.print = function() {
+TowersHanoi.prototype.validMove = function(to, from) {
+  //implement this function to dry the makeMove function
+
+}
+
+TowersHanoi.prototype.print = function() {
   console.log(this.towers[0]);
   console.log(this.towers[1]);
   console.log(this.towers[2]);
   console.log("############################")
 };
 
-towersHanoi.prototype.gameOver = function() {
+TowersHanoi.prototype.gameOver = function() {
   tOneLength = this.towers[0].length;
   tTwoLength = this.towers[1].length;
   tThreeLength = this.towers[2].length;
@@ -46,7 +51,7 @@ towersHanoi.prototype.gameOver = function() {
 
 //* the way to play this game would be
 
-// var game = new towersHanoi(2);
+// var game = new TowersHanoi(2);
 //
 // game.moveDisk(1,2);
 // game.moveDisk(1,3);
@@ -58,14 +63,20 @@ towersHanoi.prototype.gameOver = function() {
 
 
 // console.log(game.towerOne);
-var game = new towersHanoi(3);
+var game = new TowersHanoi(3);
 game.print();
 game.moveDisk(1,2);
+game.print();
 game.moveDisk(1,3);
+game.print();
 game.moveDisk(2,3);
+game.print();
 game.moveDisk(1,2);
+game.print();
 game.moveDisk(3,1);
+game.print();
 game.moveDisk(3,2);
+game.print();
 game.moveDisk(1,2);
 console.log("By the end we have following disks on the towers");
 game.print();
