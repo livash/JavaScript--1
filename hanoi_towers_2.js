@@ -3,72 +3,44 @@
 function towersHanoi(number_of_disks) {
   this.towers = [[], [], []];
 
-  this.towerOne = new Array();
-  this.towerTwo = new Array();
-  this.towerThree = new Array();
-
-  //put disks onto the first tower
-  for(var ii = number_of_disks; ii > 0; ii--) {
-    this.towerOne.push(ii);
-  }
   for(var ii = number_of_disks; ii > 0; ii--) {
     this.towers[0].push(ii);
   }
-  console.log(this.towers);
 }
 
-towersHanoi.prototype.moveDisk = function(tower_from, tower_to) {
-  // console.log("tower one" + this.towerOne);
-  switch(tower_from) {
-  case 1:
-    var fromTower = this.towerOne;
-    break;
-  case 2:
-    var fromTower = this.towerTwo;
-    break;
-  case 3:
-    var fromTower = this.towerThree;
-  };
+towersHanoi.prototype.moveDisk = function(from, to) {
+  from -= 1;
+  to -= 1;
+  var lastElement = this.towers[from].length - 1;
+  var fromDisk = this.towers[from][lastElement];
 
-  switch(tower_to) {
-  case 1:
-    var toTower = this.towerOne;
-    break;
-  case 2:
-    var toTower = this.towerTwo;
-    break;
-  case 3:
-    var toTower = this.towerThree;
-  };
-
-  var fromDisk = fromTower[fromTower.length - 1];
-
-  if (toTower.length === 0) {
+  if (this.towers[to].length === 0) {
     var toDisk = fromDisk + 1;
   } else {
-    var toDisk = toTower[toTower.length - 1];
+    var lastEl = this.towers[to].length - 1;
+    var toDisk = this.towers[to][lastEl];
   }
   // console.log("to disk = " + toDisk);
   if (fromDisk < toDisk) {
     //make the move
-    fromTower.pop();
-    toTower.push(fromDisk);
+    this.towers[from].pop();
+    this.towers[to].push(fromDisk);
 
   }
   this.print();
 };
 
 towersHanoi.prototype.print = function() {
-  console.log(this.towerOne);
-  console.log(this.towerTwo);
-  console.log(this.towerThree);
+  console.log(this.towers[0]);
+  console.log(this.towers[1]);
+  console.log(this.towers[2]);
   console.log("############################")
 };
 
 towersHanoi.prototype.gameOver = function() {
-  tOneLength = this.towerOne.length;
-  tTwoLength = this.towerTwo.length;
-  tThreeLength = this.towerThree.length;
+  tOneLength = this.towers[0].length;
+  tTwoLength = this.towers[1].length;
+  tThreeLength = this.towers[2].length;
   return (tOneLength === 0 && (tTwoLength === 0 || tThreeLength === 0));
 };
 
