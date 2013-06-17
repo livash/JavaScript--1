@@ -41,6 +41,11 @@ TicTacToe.prototype.print = function() {
 }
 
 TicTacToe.prototype.isGameOver = function() {
+  var winCombinations = this.winCombinations();
+
+}
+
+TicTacToe.prototype.winCombinations = function() {
 
 }
 
