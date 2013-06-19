@@ -1,0 +1,22 @@
+#board {
+  width: 600px;
+  height: 600px;
+  background-color: blue;
+  padding: 1em;
+}
+
+.row {
+}
+
+.element {
+  float: left;
+  height: 190px;
+  width: 190px;
+  background-color: yellow;
+  border:  black solid;
+}
+
+.mark {
+  font-size: 10em;
+  padding-left: 20px;
+}

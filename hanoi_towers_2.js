@@ -3,9 +3,12 @@
 function TowersHanoi(number_of_disks) {
   this.towers = [[], [], []];
 
-  for(var ii = number_of_disks; ii > 0; ii--) {
-    this.towers[0].push(ii);
-  }
+  _.times(number_of_disks, function(idx) {
+    this.towers[0].push(idx);
+  });
+  // for(var ii = 1; ii <= number_of_disks; ii++) {
+//     this.towers[0].push(ii);
+//   }
 }
 
 TowersHanoi.prototype.moveDisk = function(from, to) {
@@ -63,22 +66,22 @@ TowersHanoi.prototype.gameOver = function() {
 
 
 // console.log(game.towerOne);
-var game = new TowersHanoi(3);
-game.print();
-game.moveDisk(1,2);
-game.print();
-game.moveDisk(1,3);
-game.print();
-game.moveDisk(2,3);
-game.print();
-game.moveDisk(1,2);
-game.print();
-game.moveDisk(3,1);
-game.print();
-game.moveDisk(3,2);
-game.print();
-game.moveDisk(1,2);
-console.log("By the end we have following disks on the towers");
-game.print();
+// var game = new TowersHanoi(3);
+// game.print();
+// game.moveDisk(1,2);
+// game.print();
+// game.moveDisk(1,3);
+// game.print();
+// game.moveDisk(2,3);
+// game.print();
+// game.moveDisk(1,2);
+// game.print();
+// game.moveDisk(3,1);
+// game.print();
+// game.moveDisk(3,2);
+// game.print();
+// game.moveDisk(1,2);
+// console.log("By the end we have following disks on the towers");
+// game.print();
 //game should be over :)
 //*/

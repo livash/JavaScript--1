@@ -1,0 +1,16 @@
+.tower {
+  float: left;
+  width: 196px;
+  height: 99%;
+  background-color: grey;
+  border: 2px black solid;
+}
+
+#towers {
+  width: 600px;
+  height: 300px;
+  border: 2px black solid;
+}
+p {
+  font-size: 3em;
+}
