@@ -1,31 +1,41 @@
-TTT.UI = function(game) {
-  this.game = game
-}
+TTT.UI = (function() {
+  function UI(game) {
+    this.game = game;
+  }
 
-TTT.UI.prototype.start = function() {
-  var game = this.game;
-  $('.element').on('click', function() {
-    var element = $(this);
+  UI.prototype.start = function() {
+    var that = this;
+    $('.element').on('click', function() {
+      var element = $(this);
+      var row = Math.floor(this.id / 3);
+      var col = this.id - row * 3;
 
-    element.append("<span class='mark'>" + game.currentMark + "</span>");
+      if(that.game.makeMove(row, col, that.game.currentMark)) {
+        element.append("<span class='mark'>" + that.game.currentMark + "</span>");
 
-    var row = Math.floor(this.id / 3);
-    var col = this.id - row * 3;
-    game.makeMove(row, col, game.currentMark);
+        if (that.game.isGameOver()) {
+          that.displayWinner();
+        }
+      };
+    });
+  };
 
-    if (game.isGameOver()) {
-      var p = $('<p>').text("You WIN!");
-      $('body').append(p);
+  UI.prototype.displayWinner = function() {
+    var that = this;
+    var p = $('<p>').text("You WIN!");
+    $('body').append(p);
 
-      var b = $('<button>').text("Start new game");
-      b.on('click', function() {
-        game = new TicTacToe('O', 'X');
-        $(".element").text("");
-        b.remove();
-        p.remove();
-      });
+    var b = $('<button>').text("Start new game");
+    b.on('click', function() {
+      that.game = new TTT.Game('O', 'X');
+      $(".element").text("");
+      b.remove();
+      p.remove();
+    });
 
-      $("body").append(b);
-    }
-  });
-}
+    $("body").append(b);
+  };
+
+  return UI;
+
+})();

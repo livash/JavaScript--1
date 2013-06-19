@@ -1,5 +1,7 @@
+TTT = {};
+
 // Tic-Tac-Toe game
-TTT = (function() {
+TTT.Game = (function() {
   function TicTacToe(mark1, mark2) {
     this.mark1 = mark1;
     this.mark2 = mark2;
@@ -30,7 +32,7 @@ TTT = (function() {
   }
 
   TicTacToe.prototype.makeMove = function(row, col, mark) {
-    if (this.isPositionEmpty(row, col)) {
+    if (this.isPositionEmpty(row, col) && !this.isGameOver()) {
       this.board[row][col] = mark;
       this.currentMark = ((this.mark1 === mark) ? this.mark2 : this.mark1);
       return true;
@@ -80,9 +82,7 @@ TTT = (function() {
     return result;
   }
 
-  return {
-    Game: TicTacToe
-  }
+  return TicTacToe;
 })();
 
 // // testing here

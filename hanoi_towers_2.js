@@ -4,7 +4,7 @@ function TowersHanoi(number_of_disks) {
   this.towers = [[], [], []];
 
   _.times(number_of_disks, function(idx) {
-    this.towers[0].push(idx);
+    this.towers[0].push(id);
   });
   // for(var ii = 1; ii <= number_of_disks; ii++) {
 //     this.towers[0].push(ii);
