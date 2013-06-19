@@ -1,56 +1,57 @@
 // Towers of  Hanoi
 
-function TowersHanoi(number_of_disks) {
-  this.towers = [[], [], []];
+HT = {};
 
-  _.times(number_of_disks, function(idx) {
-    this.towers[0].push(id);
-  });
-  // for(var ii = 1; ii <= number_of_disks; ii++) {
-//     this.towers[0].push(ii);
-//   }
-}
+HT.Game = (function() {
 
-TowersHanoi.prototype.moveDisk = function(from, to) {
-  from -= 1;
-  to -= 1;
-  var lastElement = this.towers[from].length - 1;
-  var fromDisk = this.towers[from][lastElement];
-
-  if (this.towers[to].length === 0) {
-    var toDisk = fromDisk + 1;
-  } else {
-    var lastEl = this.towers[to].length - 1;
-    var toDisk = this.towers[to][lastEl];
+  function TowersHanoi(number_of_disks) {
+    this.towers = [[], [], []];
+    var that = this;
+    _.times(number_of_disks, function(idx) {
+      that.towers[0].push(idx + 1);
+    });
   }
-  // console.log("to disk = " + toDisk);
-  if (fromDisk < toDisk) {
-    //make the move
-    this.towers[from].pop();
-    this.towers[to].push(fromDisk);
-  } else {
-    console.log("this move is not allowed");
-  }
-};
 
-TowersHanoi.prototype.validMove = function(to, from) {
-  //implement this function to dry the makeMove function
+  TowersHanoi.prototype.moveDisk = function(from, to) {
+    from -= 1;
+    to -= 1;
 
-}
+    var fromDisk = this.towers[from][0];
+    if (this.towers[to].length === 0) {
+      var toDisk = fromDisk + 1;
+    } else {
+      var toDisk = this.towers[to][0];
+    }
 
-TowersHanoi.prototype.print = function() {
-  console.log(this.towers[0]);
-  console.log(this.towers[1]);
-  console.log(this.towers[2]);
-  console.log("############################")
-};
+    if (fromDisk < toDisk) {
+      //make the move
+      this.towers[from].shift();
+      this.towers[to].unshift(fromDisk);
+      return true;
+    } else {
+      console.log("this move is not allowed");
+      return false;
+    }
+  };
 
-TowersHanoi.prototype.gameOver = function() {
-  tOneLength = this.towers[0].length;
-  tTwoLength = this.towers[1].length;
-  tThreeLength = this.towers[2].length;
-  return (tOneLength === 0 && (tTwoLength === 0 || tThreeLength === 0));
-};
+  TowersHanoi.prototype.print = function() {
+    console.log(this.towers[0]);
+    console.log(this.towers[1]);
+    console.log(this.towers[2]);
+    console.log("############################")
+  };
+
+  TowersHanoi.prototype.gameOver = function() {
+    tOneLength = this.towers[0].length;
+    tTwoLength = this.towers[1].length;
+    tThreeLength = this.towers[2].length;
+    return (tOneLength === 0 && (tTwoLength === 0 || tThreeLength === 0));
+  };
+
+  return TowersHanoi;
+
+})();
+
 
 //* the way to play this game would be
 
